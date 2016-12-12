@@ -1,0 +1,29 @@
+{
+  "name": "qlocktwo-svelte",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "keywords": [],
+  "author": "Mark Manders <mmjmanders@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "compile": "webpack",
+    "serve": "browser-sync start -s ./app --ss ./.tmp -f ./.tmp ./app",
+    "dist": "rm -rf dist && mkdir dist && webpack -p && cp -R ./app/index.html ./app/styles ./dist && cp -R ./.tmp/* ./dist",
+    "serve:dist": "npm run dist && browser-sync start -s ./dist"
+  },
+  "devDependencies": {
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-plugin-lodash": "^3.2.10",
+    "babel-preset-latest": "^6.16.0",
+    "browser-sync": "^2.18.5",
+    "classnames": "^2.2.5",
+    "lodash": "^4.17.2",
+    "lodash-webpack-plugin": "^0.10.6",
+    "svelte": "^1.2.2",
+    "svelte-loader": "^1.1.0",
+    "webpack": "^1.14.0"
+  }
+}

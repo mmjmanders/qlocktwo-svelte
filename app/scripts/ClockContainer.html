@@ -1,0 +1,47 @@
+<div class="qlocktwo">
+  {{#each minuteIndicators as v}}
+  <MinuteIndicator minute='{{v}}' currentMinute='{{minutes % 5}}'/>
+  {{/each}}
+  {{#each clock as r, i}}
+  <ClockRow row='{{r}}' rowIndex='{{i}}' time='{{time}}'/>
+  {{/each}}
+</div>
+
+<style>
+  .qlocktwo {
+    position: relative;
+    padding: 60px;
+    background: black;
+    width: calc((11 * 40px) + (2 * 60px));
+    height: calc((10 * 44px) + (2 * 60px));
+  }
+</style>
+
+<script>
+  import MinuteIndicator from './MinuteIndicator';
+  import Mappings from './Mappings';
+  import ClockRow from './ClockRow';
+
+  export default {
+    data() {
+      return {
+        time: new Date(),
+        minuteIndicators: [1, 2, 3, 4],
+        clock: Mappings.clock
+      };
+    },
+    computed: {
+      minutes: time => time.getMinutes()
+    },
+    onrender() {
+      this.interval = setInterval(() => this.set({time: new Date()}), 1000);
+    },
+    onteardown() {
+      clearInterval(this.interval);
+    },
+    components: {
+      MinuteIndicator,
+      ClockRow,
+    }
+  }
+</script>

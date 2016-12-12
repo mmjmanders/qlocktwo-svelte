@@ -1,0 +1,42 @@
+<span id="minute-{{minute}}" class="{{on ? 'on' : 'off'}}">&#x25cf;</span>
+
+<style>
+  #minute-1, #minute-2, #minute-3, #minute-4 {
+    position: absolute;
+    font-size: 1em;
+  }
+
+  #minute-1 {
+    top: 0;
+    left: 0;
+  }
+
+  #minute-2 {
+    top: 0;
+    right: 0;
+  }
+
+  #minute-3 {
+    right: 0;
+    bottom: 0;
+  }
+
+  #minute-4 {
+    bottom: 0;
+    left: 0;
+  }
+</style>
+
+<script>
+  export default {
+    data() {
+      return {
+        currentMinute: 0,
+        minute: 0
+      };
+    },
+    computed: {
+      on: (minute, currentMinute) => minute <= currentMinute
+    }
+  }
+</script>
