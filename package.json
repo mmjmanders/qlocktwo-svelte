@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "compile": "webpack",
-    "serve": "browser-sync start -s ./app --ss ./.tmp -f ./.tmp ./app",
+    "serve": "npm run compile && browser-sync start -s ./app --ss ./.tmp -f ./.tmp ./app",
     "dist": "rm -rf dist && mkdir dist && webpack -p && cp -R ./app/index.html ./app/styles ./dist && cp -R ./.tmp/* ./dist",
     "serve:dist": "npm run dist && browser-sync start -s ./dist"
   },
