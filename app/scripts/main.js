@@ -1,8 +1,8 @@
 /**
  * Created by mark on 12/12/2016.
  */
-import ClockContainer from "./ClockContainer";
+import Clock from "./Clock";
 
-new ClockContainer({
+new Clock({
     target: document.querySelector('main')
 });

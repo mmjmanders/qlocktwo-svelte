@@ -1,0 +1,96 @@
+<div id="qlocktwo">
+  {{#each minuteIndicators as v}}
+  <span class="minute-{{v}} {{v <= (time.getMinutes() % 5) ? 'on' : 'off'}}">&#x25cf;</span>
+  {{/each}}
+  {{#each clock as row, rowIndex}}
+  <div>
+    {{#each row as r, i}}
+    <span class="{{on(i, time, rowIndex) ? 'on' : 'off'}}">{{r}}</span>
+    {{/each}}
+  </div>
+  {{/each}}
+</div>
+
+<style>
+  .on {
+    color: white;
+  }
+
+  .off {
+    color: #222;
+  }
+
+  span {
+    display: inline-block;
+    width: 40px;
+    line-height: 44px;
+    text-align: center;
+    font-size: 2em;
+  }
+
+  #qlocktwo {
+    position: relative;
+    padding: 60px;
+    background: black;
+    width: 560px;
+    height: 560px;
+  }
+
+  .minute-1, .minute-2, .minute-3, .minute-4 {
+    position: absolute;
+    font-size: 1em;
+  }
+
+  .minute-1 {
+    top: 0;
+    left: 0;
+  }
+
+  .minute-2 {
+    top: 0;
+    right: 0;
+  }
+
+  .minute-3 {
+    right: 0;
+    bottom: 0;
+  }
+
+  .minute-4 {
+    bottom: 0;
+    left: 0;
+  }
+</style>
+
+<script>
+  import Mappings from './Mappings';
+  import find from 'lodash/find';
+
+  function on(i, time, rowIndex) {
+    return (find(Mappings['it-is'], arr => arr[0] === rowIndex && arr[1] === i) !== undefined && (time.getMinutes() === 0 || time.getMinutes() === 30)) ||
+      find(Mappings['minutes'][time.getMinutes() - (time.getMinutes() % 5)], arr => arr[0] === rowIndex && arr[1] === i) !== undefined ||
+      find(Mappings['hours'][(time.getMinutes() <= 20 ? time.getHours() : time.getHours() + 1) % 12], arr => arr[0] === rowIndex && arr[1] === i) !== undefined;
+  }
+
+  export default {
+    data() {
+      return {
+        time: new Date(),
+        minuteIndicators: [1, 2, 3, 4],
+        clock: Mappings.clock
+      };
+    },
+    computed: {
+      minutes: time => time.getMinutes()
+    },
+    onrender() {
+      this.interval = setInterval(() => this.set({time: new Date()}), 1000);
+    },
+    onteardown() {
+      clearInterval(this.interval);
+    },
+    helpers: {
+      on
+    }
+  }
+</script>

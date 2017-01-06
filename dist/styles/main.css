@@ -1,42 +1,6 @@
-@keyframes switch_off {
-  from {
-    color: white;
-  }
-  to {
-    color: #222;
-  }
-}
-
-@keyframes switch_on {
-  from {
-    color: #222;
-  }
-  to {
-    color: white;
-  }
-}
-
 * {
   box-sizing: border-box;
   font-family: 'Orbitron', sans-serif;
-}
-
-.on {
-  color: white;
-  animation: switch_on 250ms;
-}
-
-.off {
-  color: #222;
-  animation: switch_off 250ms;
-}
-
-.qlocktwo span {
-  display: inline-block;
-  width: 40px;
-  line-height: 44px;
-  text-align: center;
-  font-size: 2em;
 }
 
 main {

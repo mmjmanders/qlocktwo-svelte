@@ -19,7 +19,6 @@
     "babel-plugin-lodash": "^3.2.10",
     "babel-preset-latest": "^6.16.0",
     "browser-sync": "^2.18.5",
-    "classnames": "^2.2.5",
     "lodash": "^4.17.2",
     "lodash-webpack-plugin": "^0.10.6",
     "svelte": "^1.2.2",
